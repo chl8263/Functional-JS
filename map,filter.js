@@ -150,3 +150,13 @@ var users = [
     console.log(add10(5));
 
 // 6. Make reduce
+    function _reduce(list, iter,  memo){
+        _each(list, function(val){
+            memo = iter(memo, val);
+        })
+        return memo;
+    }
+    
+    _reduce([1,2,3], function(a,b){
+        return a + b;
+    }, 0);
