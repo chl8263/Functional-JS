@@ -105,20 +105,48 @@ var users = [
     // 1. Remove Duplicate _map, _filter using _each
         // --> go to _.js
     
-    // 2. External Polymorphism.
-        // 1. array_like, arguments, document.querySelectorAll
-        console.log(
-            [1,2,3,4].map(function (val){ return val * 2; })
-        );
+// 4. External Polymorphism.
+    // 1. array_like, arguments, document.querySelectorAll
+    console.log(
+        [1,2,3,4].map(function (val){ return val * 2; })
+    );
 
-        console.log(
-            [1,2,3,4].filter(function (val){ return val == 2; })
-        );
+    console.log(
+        [1,2,3,4].filter(function (val){ return val == 2; })
+    );
 
-        // Can use map, filter function when value is just array.
+    // Can use map, filter function when value is just array.
 
-        console.log(
-            _map(document.querySelectorAll('*'), function (node){
-                return node.nodeName;
-            })
-        );
+    console.log(
+        _map(document.querySelectorAll('*'), function (node){
+            return node.nodeName;
+        })
+    );
+    // document.querySelectorAll('*') do not return value type array, so Use the function which i made can do this.
+    
+// 5. Curring
+    // 1. _curry, _curryr
+        // function _curry(fn){
+        //     return function(a){
+        //         return function(b){
+        //             return fn(a,b);
+        //         }
+        //     }
+        // }
+    function _curry(fn){
+        return function(a, b){
+            return arguments.length == 2 ? fn(a, b) : function(b){return fn(a,b);}
+        }
+    }
+
+    var add = _curry(function(a, b){
+        return a + b;
+    });
+
+    var add10 = add(10);
+    
+    console.log(add10);
+
+    console.log(add10(5));
+
+// 6. Make reduce
