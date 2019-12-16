@@ -23,6 +23,10 @@ class Person{
         return this._address;
     }
 
+    get fullName(){
+        return `${this._firstName} ${this.lastName}`;
+    }
+
     get bithdayYear(){
         return this._bithdayYear;
     }
@@ -39,45 +43,3 @@ class Person{
         return `Person (${this._firstName}, ${this._lastName})`;
     }
 }
-
-class Student extends Person{
-    constructor(firstNanme, lastName, ssn, school){
-        super(firstNanme, lastName, ssn);
-        this._school = school;
-    }
-
-    get school(){
-        return this._school;
-    }
-}
-
-class Address{
-    constructor(country, state, city, zip, street){
-        this._country = country;
-        this._state = state;
-        this._city = city;
-        this._zip = zip;
-        this._street = street;
-    }
-
-    get street(){
-        return this._street;
-    }
-
-    get city(){
-        return this._city;
-    }
-
-    get state(){
-        return this._state;
-    }
-
-    get zip(){
-        return this._zip;
-    }
-
-    get country(){
-        return this._country;
-    }
-}
-

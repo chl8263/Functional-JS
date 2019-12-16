@@ -1,3 +1,4 @@
+//================= data ===============================================
 const p1 = new Person("Haskell", "curry", "111-11-1111");
 p1.address = new Address("US");
 p1.bithdayYear = 1900;
@@ -13,3 +14,8 @@ p3.bithdayYear = 1903;
 const p4 = new Person("Alonzo", "Church", "444-44-4444");
 p2.address = new Address("US");
 p2.bithdayYear = 1903;
+
+//================= Lambda ===============================================
+const name = p => p.fullName;
+
+console.log(name(p1));
