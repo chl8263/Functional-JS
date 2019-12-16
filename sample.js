@@ -23,7 +23,7 @@ class Person{
         return this._address;
     }
 
-    get _bithdayYear(){
+    get bithdayYear(){
         return this._bithdayYear;
     }
 
@@ -57,7 +57,7 @@ class Address{
         this._state = state;
         this._city = city;
         this._zip = zip;
-        this.street = street;
+        this._street = street;
     }
 
     get street(){
