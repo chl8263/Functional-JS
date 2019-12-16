@@ -20,14 +20,34 @@ const name = p => p.fullName;
 
 console.log(name(p1));
 
-//================= map ===============================================
+//================= lodash map ===============================================
 // Imperative programming -->
 var result = [];
-var person = [p1,p2,p3,p4];
+var persons = [p1,p2,p3,p4];
 
-for(let i = 0; i< person.length; i++){
-    var p = person[i];
+for(let i = 0; i< persons.length; i++){
+    var p = persons[i];
     if(p !== null && p != undefined){
         result.push(p);
     }
 }
+
+// functional programming -->
+_.map(persons,
+    s => (s !== null && s !== undefined) ? s.fullName : ''
+);
+
+//================= map internal ===============================================
+function map(arr, fn){
+    const len = arr.length,
+        result = new Array(len);
+    for(let idx = 0; i < len; i++){
+        result[idx] = fn(arr[idx], idx, arr);
+    }
+    return result;
+}
+
+//================= lodash recerse ===============================================
+_(persons).reverse().map(
+    p => (p !== null && p !== undefined ? p.fullName : "")
+);
