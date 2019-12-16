@@ -1,12 +1,12 @@
 //========== 2-3 closure =============================================
-var outerVar = 'Outer';
+var outerVar = "Outer";
 
 function makeInner(Params){
     var innervar = "inner";
 
     function inner(){
         console.log(
-            `${outervar}, ${innervar}, ${Params}`
+            //`${outervar}, ${innervar}, ${Params}`
         );
     }
     return inner;
