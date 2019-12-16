@@ -19,3 +19,15 @@ p2.bithdayYear = 1903;
 const name = p => p.fullName;
 
 console.log(name(p1));
+
+//================= map ===============================================
+// Imperative programming -->
+var result = [];
+var person = [p1,p2,p3,p4];
+
+for(let i = 0; i< person.length; i++){
+    var p = person[i];
+    if(p !== null && p != undefined){
+        result.push(p);
+    }
+}
