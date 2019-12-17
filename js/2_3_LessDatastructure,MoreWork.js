@@ -12,8 +12,8 @@ p3.address = new Address("Hungary");
 p3.bithdayYear = 1903;
 
 const p4 = new Person("Alonzo", "Church", "444-44-4444");
-p2.address = new Address("US");
-p2.bithdayYear = 1903;
+p4.address = new Address("US");
+p4.bithdayYear = 1903;
 
 //================= Lambda ===============================================
 const name = p => p.fullName;
@@ -67,10 +67,38 @@ function reduce(arr, fn, accmulator){
     return accmulator;
 }
 
-
 //================= Calculate unmber of people in nation ===============================================
-// _(persons).reduce( (stat, person) => {
-//     const country = person.address.country;
-//     stat[country] = _.isUndefined(stat[country]) ? 1 : stat[country] + 1;
-//     return stat;
-// }, {});
+_(persons).reduce( (stat, person) => {
+    const country = person.address.country;
+    stat[country] = _.isUndefined(stat[country]) ? 1 : stat[country] + 1;
+    return stat;
+}, {});
+
+//================= map + reduce ===============================================
+//_(persons).map(function).reduce(function);
+
+const getCountry = person => person.address.country;
+
+const gatherState = function (stat, criteria){
+    stat[criteria] = _.isUndefined(stat[criteria]) ? 1 : stat[criteria];
+    return stat;
+}
+
+//console.log(_.map(persons, getCountry));
+
+//console.log(_(persons).map(getCountry).reduce(gatherState, {}));
+
+//================= validation function ===============================================
+const isNotValid = val => _.isUndefined(val) || _.isNull(val);
+
+const notAllValid = args => _(args).some(isNotValid);
+
+//console.log(notAllValid(["1212", 1, false, null])); --> true
+//console.log(notAllValid(["1212", 0, {}]));          --> false
+
+const isValid = val => !_.isUndefined(val) && !_.isNull(val);
+
+const allValid = args => _(args).every(isValid);
+
+//console.log(allValid(["aaa", 1, 2]));             --> true
+//console.log(allValid([false, 1, undefined]));     --> false
