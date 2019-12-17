@@ -47,7 +47,30 @@ function map(arr, fn){
     return result;
 }
 
-//================= lodash recerse ===============================================
+//================= lodash reverse ===============================================
 _(persons).reverse().map(
     p => (p !== null && p !== undefined ? p.fullName : "")
 );
+
+//================= reduce internal ===============================================
+function reduce(arr, fn, accmulator){
+    let idx = -1,
+        len = arr.length;
+
+    if(!accmulator && len > 0){
+        accmulator = arr[++idx];
+    }
+
+    while(++idx < len){
+        accmulator = fn(accmulator, arr[idx], idx, arr);
+    }
+    return accmulator;
+}
+
+
+//================= Calculate unmber of people in nation ===============================================
+// _(persons).reduce( (stat, person) => {
+//     const country = person.address.country;
+//     stat[country] = _.isUndefined(stat[country]) ? 1 : stat[country] + 1;
+//     return stat;
+// }, {});
