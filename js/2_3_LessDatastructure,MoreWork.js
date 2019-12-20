@@ -121,7 +121,8 @@ function filter(arr, predicate){
 const bornIn1903 = person => person.bithdayYear === 1903;
 
 const js_filter = persons.filter(bornIn1903);   // js filter
-console.log(js_filter);
+//console.log(js_filter);
 
-// const lodash_filter = _(persons).filter(bornIn1903);
-// console.log(lodash_filter);
+//const lodash_filter = _.filter(persons, bornIn1903);    // lodash filter
+//const lodash_filter = _(persons).filter(bornIn1903).map(fullName);
+//console.log(_(persons).filter(bornIn1903).map(fullName));
