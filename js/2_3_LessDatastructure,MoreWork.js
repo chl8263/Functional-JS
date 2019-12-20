@@ -18,7 +18,7 @@ p4.bithdayYear = 1903;
 //================= Lambda ===============================================
 const name = p => p.fullName;
 
-console.log(name(p1));
+//console.log(name(p1));
 
 //================= lodash map ===============================================
 // Imperative programming -->
@@ -102,3 +102,26 @@ const allValid = args => _(args).every(isValid);
 
 //console.log(allValid(["aaa", 1, 2]));             --> true
 //console.log(allValid([false, 1, undefined]));     --> false
+
+//================= reduce internal ===============================================
+function filter(arr, predicate){
+    let idx = -1;
+    result = [];
+
+    while(++idx < len){
+        let value = arr[idx];
+        if(predicate(value, idx, this)){
+            result.push(value);
+        }
+    }
+    return result;
+}
+
+//================= filter ===============================================
+const bornIn1903 = person => person.bithdayYear === 1903;
+
+const js_filter = persons.filter(bornIn1903);   // js filter
+console.log(js_filter);
+
+// const lodash_filter = _(persons).filter(bornIn1903);
+// console.log(lodash_filter);
