@@ -42,3 +42,13 @@ function curry2(fn){
         }
     }
 }
+
+//=================== Check type ======================
+//check type :: Type -> Object -> Object
+const checkType = R.curry((typeDef, obj) => {
+    if(!R.is(typeDef, obj)){
+        let type = typeof obj;
+        throw new TypeError(`Incorrect Type`);
+    }
+    return obj;
+});
