@@ -92,3 +92,28 @@ class Node{
         return `Node (val : ${this._val}, children : ${this._children}`;
     }
 }
+
+const church = new Node(new Person('Alonzo', 'church', '111-11-1111'));
+
+class Tree{
+    constructor(root){
+        this._root = root;
+    }
+
+    static map(node, fn, tree = null){
+        node.value = fn(node.value);
+        if(tree === null){
+            tree = new Tree();
+        }
+
+        if(node.hasChildren()){
+            _.map(node.children, (child) => Tree.map(child, fn, tree));
+        }
+
+        return tree;
+    }
+
+    get root(){
+        return this._root;
+    }
+}
