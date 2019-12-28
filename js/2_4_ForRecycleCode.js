@@ -66,3 +66,40 @@ const count = (arr) => arr.length;
 const countWords = R.compose(count, explode);
 
 console.log(countWords(str));
+
+//=================== Compose functional library ======================
+const student = ['Rosser', 'Turing', 'Kleene', 'church'];
+const grade = [80, 100, 90, 99];
+
+const smartSrudent = R.compose(
+    R.head,
+    R.pluck(0),
+    R.reverse,
+    R.sortBy(R.prop(1)),
+    R.zip
+);
+
+//console.log(smartSrudent(student, grade));
+
+//=================== I - combination ======================
+// identity :: (a) -> a
+
+//=================== (Tab) K - combination ======================
+// tap :: (a -> *) -> a -> a
+
+//=================== OR - combination ======================
+const alt = function(func1, func2){
+    return function(val){
+        return func1(val) || func2(val);
+    }
+};
+
+const altTest = alt( (val) => null, (val) => val )(10);
+
+//console.log(altTest);
+
+const altRLambda = R.curry((func1, func2, val) => func1(val) || func2(val));
+//console.log(altRLambda((val) => null, (val) => val , 245));
+
+const altLambda = (func1, func2) => (val) => func1(val) || func2(val);
+console.log(altLambda((val) => null, (val) => val)(245));
