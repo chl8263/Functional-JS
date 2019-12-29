@@ -95,11 +95,74 @@ const alt = function(func1, func2){
 };
 
 const altTest = alt( (val) => null, (val) => val )(10);
-
 //console.log(altTest);
 
 const altRLambda = R.curry((func1, func2, val) => func1(val) || func2(val));
 //console.log(altRLambda((val) => null, (val) => val , 245));
 
 const altLambda = (func1, func2) => (val) => func1(val) || func2(val);
-console.log(altLambda((val) => null, (val) => val)(245));
+//console.log(altLambda((val) => null, (val) => val)(245));
+ 
+//=================== S - combination ======================
+const seq = function(){
+    const funcs = Array.prototype.slice.call(arguments);
+    return function(val){
+        funcs.forEach(function (fn){
+            fn(val);
+        });
+    }
+}
+
+//=================== Fork - combination ======================
+//              input
+//                |
+//         ---------------
+//        |               |
+//     function1        function2
+//        |               |
+//         ---------------
+//                |
+//               join
+const fork = function(join, func1, func2){
+    return function(val){
+        return join(func1(val), func2(val));
+    };
+};
+
+const ww = fork((v1, v2) => v1 + v2, (val) => val +1, (val) => val + 2);
+console.log(ww(20));
+
+
+
+// function findBV(people){    // 재귀함수
+//     if(people.length === 1 && people[0].child === null){    // 만약 자식의 갯수가 1이고 자식을 더이상 가지지 않을때 리턴받음
+//         people[0].BV = people[0].PV;    // 최하위의 사람의 BV는 PV 이다.
+//         return people[0].PV;
+//     } 
+    
+//     people.array.forEach(element => {
+//         element.BV = element.PV + findBV(element.child);    // 각 자식들의 노드들의 BV를 합은 곧 부모의 PV가 된다.
+//     });
+// }
+
+// function main(){
+//     /*
+//      *  BV구하기 리스트를 만드는것은 나중문제라고 판단. 각 트리의 BV 계산에 집중함.
+//     */
+//     findBV(findHiestPeople()); // 최상위 포식자들의 배열을 입력받음
+// }
+
+// let result = new Array();
+
+
+
+// function findBV(people){    // 재귀함수
+//     if(people.length === 1 && people[0].child === null){    // 만약 자식의 갯수가 1이고 자식을 더이상 가지지 않을때 리턴받음
+//         people[0].BV = people[0].PV;    // 최하위의 사람의 BV는 PV 이다.
+//         return people[0].PV;
+//     } 
+    
+//     people.array.forEach(element => {
+//         element.BV = element.PV + findBV(element.child);    // 각 자식들의 노드들의 BV를 합은 곧 부모의 PV가 된다.
+//     });
+// }
