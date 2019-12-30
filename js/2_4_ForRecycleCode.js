@@ -5,7 +5,7 @@ const trim = (str) => str.trim(/^\s*|\s*$/g, '');
 // mormalize :: String -> String
 const normalize = (str) => str.replace(/\-/g, '');
 
-console.log(normalize(trim("444-444-4444")));
+//console.log(normalize(trim("444-444-4444")));
 
 //=================== Tuple ======================
 const Tuple = function(){
@@ -65,7 +65,7 @@ const count = (arr) => arr.length;
 
 const countWords = R.compose(count, explode);
 
-console.log(countWords(str));
+//console.log(countWords(str));
 
 //=================== Compose functional library ======================
 const student = ['Rosser', 'Turing', 'Kleene', 'church'];
@@ -130,7 +130,7 @@ const fork = function(join, func1, func2){
 };
 
 const ww = fork((v1, v2) => v1 + v2, (val) => val +1, (val) => val + 2);
-console.log(ww(20));
+//console.log(ww(20));
 
 
 
