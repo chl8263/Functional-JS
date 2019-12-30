@@ -189,5 +189,40 @@ class Nothing extends Maybe{
 }
 
 //=================== IO monad ======================
+const read = (document, selector) => document.querySelector(selector).innerHtml;
+
+const write = (document, selector, val) => document.querySelector(selector).innerHtml.val;
+
+class IO{
+    constructor(effect){
+        if(!_.isFunction(effect)){
+            throw `IO use : function have to essestial `;
+        }
+
+        this.effect = effect;
+    }
+
+    static of(a){
+        return new IO(() => a);
+    }
+
+    static from(fn){
+        return new IO(fn);
+    }
+
+    map(fn){
+        let self = this;
+        return new IO(() => fn(self.effect()));
+    }
+
+    chain(fn){
+        return fn(this.effect());
+    }
+
+    run(){
+        return this.effect();
+    }
+}
+
 
 
