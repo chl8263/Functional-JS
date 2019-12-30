@@ -57,3 +57,55 @@ class Empty{
         return `Empty ()`;
     }
 }
+
+const empty = () => Empty();
+
+const isEven = (n) => Number.isFinite(n) && (n%2 ==0);
+
+const half = (val) => isEven(val) ? new Wrapper(val/2) : new Empty();
+
+//console.log(half(3));
+
+//=================== Wrapper monad ======================
+
+class MonadWrapper{
+    constructor(value){
+        this._value = value;
+    }
+
+    static of(a){
+        return new MonadWrapper(a);
+    }
+
+    map(f){
+        return MonadWrapper.of(f(this._value));
+    }
+
+    join(){
+        if(!(this._value instanceof MonadWrapper)){
+            console.log(this);
+            return this;
+        }
+        return this._value.join();
+    }
+
+    get(){
+        return this._value;
+    }
+
+    toStrin(){
+        return `MonadWrapper (${this._value})`;
+    }
+}
+
+const moand = MonadWrapper.of("Hello monad").map(R.toUpper).map(R.identity);
+//console.log(moand);
+
+const monadJoin = MonadWrapper.of(MonadWrapper.of(MonadWrapper.of('getMoand'))).join();
+
+//console.log(monadJoin);
+
+//=================== Maybe ======================
+
+
+
