@@ -41,4 +41,19 @@ const five = two.fmap(plus3);
 
 //console.log(five.map(R.identity)); // 5
 
-console.log(two.fmap(plus3).fmap(plus10));
+//console.log(two.fmap(plus3).fmap(plus10));
+
+
+class Empty{
+    map(f){
+        return this;
+    }
+
+    fmap(_){
+        return new Empty();
+    }
+
+    toString(){
+        return `Empty ()`;
+    }
+}
